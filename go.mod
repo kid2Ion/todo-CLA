@@ -3,6 +3,7 @@ module todo_CLA
 go 1.18
 
 require (
+	github.com/golang/mock v1.6.0
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/mattn/go-sqlite3 v1.14.15
 )
