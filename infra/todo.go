@@ -54,6 +54,6 @@ func (todoRepo *TodoRepository) Create(todo *model.Todo) (*model.Todo, error) {
 }
 
 func (todoRepo *TodoRepository) Update(todo *model.Todo) (*model.Todo, error) {
-	_, err := todoRepo.SqlHandler.Conn.Exec("UPDATE todos SET task = ?, limitDate = ?, stutas = ? WHERE id = ?", todo.Task, todo.LimitDate, todo.Status, todo.Id)
+	_, err := todoRepo.SqlHandler.Conn.Exec("UPDATE todos SET task = ?, limitDate = ?, status = ? WHERE id = ?", todo.Task, todo.LimitDate, todo.Status, todo.Id)
 	return todo, err
 }
