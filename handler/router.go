@@ -6,5 +6,5 @@ func InitRouting(e *echo.Echo, todoHandler TodoHandler) {
 	e.GET("/", todoHandler.View())
 	e.GET("/search", todoHandler.Search())
 	e.POST("/create", todoHandler.Add())
-	e.PUT("/Edit", todoHandler.Edit())
+	e.PUT("/edit", todoHandler.Edit())
 }
