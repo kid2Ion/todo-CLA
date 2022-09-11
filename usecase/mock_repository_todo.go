@@ -2,7 +2,7 @@
 // Source: domain/repository/todo.go
 
 // Package mock_repository is a generated GoMock package.
-package mock_repository
+package usecase
 
 import (
 	reflect "reflect"
