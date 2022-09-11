@@ -123,3 +123,43 @@ func TestSearch(t *testing.T) {
 		})
 	}
 }
+
+func TestAdd(t *testing.T) {
+	input := &model.Todo{
+		Id:        1,
+		Task:      "掃除",
+		LimitDate: "昼",
+		Status:    true,
+	}
+	tests := []struct {
+		name    string
+		err     error
+		wantErr bool
+	}{
+		{
+			name:    "正常系",
+			err:     nil,
+			wantErr: false,
+		},
+		{
+			name:    "異常系",
+			err:     errors.New("DB error"),
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ctrl := gomock.NewController(t)
+			defer ctrl.Finish()
+
+			mock := NewMockTodoRepository(ctrl)
+			mock.EXPECT().Create(input).Return(nil, tt.err)
+
+			todoUsecase := NewTodoUsecase(mock)
+			err := todoUsecase.Add(input)
+			if (err != nil) != tt.wantErr {
+				t.Error("got err:", err)
+			}
+		})
+	}
+}
